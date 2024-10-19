@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-+0n0zS+LlXqKuJ3ZqO/m6gN5KELgUfW2Wx3p1wX4/ahbd5OksxXgZE4dXvpkt6x" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-+0n0zS+LlXqKuJ3ZqO/m6gN5KELgUfW2Wx3p1wX4/ahbd5OksxXgZE4dXvpkt6x" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<style>
+    body {
+    background-color: #F0F8FF;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    color: #2F4F4F;
+    margin-top: 20px;
+}
+
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+    color: #2F4F4F;
+    margin-top: 20px;
+}
+
+form {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #FAFAD2;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #C0C0C0;
+    color: #2F4F4F;
+    width: 60%;
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* To position the watermark inside the form */
+}
+
+/* Add the watermark image */
+form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=100064651630928'); /* Your image URL */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.1; /* Set opacity for watermark effect */
+    z-index: -1; /* Position it behind the form content */
+}
+
+/* Label Styling */
+label {
+    color: #2E8B57; /* SeaGreen */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Fields and Select Elements */
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    background-color: #FFF;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    border: 2px solid #4CAF50; /* Green border on focus */
+    outline: none;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+.calendar-icon {
+            /* Add styles for the calendar icon */
+            position: relative;
+        }
+
+        .calendar-icon::after {
+
+
+            
+            /* Add styles for the calendar symbol */
+            content: "\1F4C5"; /* Unicode character for calendar */
+            position: relative;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 20px;
+            z-index: 1; /* Ensure the symbol appears above the input box */
+        }
+
+        .calendar-input {
+            /* Adjust input box styles to show the symbol */
+            padding-right: 1px; /* Make space for the symbol */
+        }
+/* Success message styling */
+.success-message {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: #FFFFFF; /* White text for better contrast */
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #32CD32; /* LimeGreen for bright green */
+    border: 1px solid #00FF00; /* Neon Green border for a vibrant look */
+    border-radius: 5px;
+    position: fixed; /* Fixed position so it stays in place */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact center */
+    width: 80%; /* Adjust width */
+    max-width: 600px; /* Set maximum width */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    
+    opacity: 1;  /* Fully visible */
+    animation: fadeOut 5s forwards; /* Apply fade-out animation */
+}
+input[type="month"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            text-align: left;
+            color: #333;
+        }
+
+        input[type="month"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+
+/* Fade-out Animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css\\style-1.css') }}">
+    <title>Faculty Event Form</title>
+
+    <script>
+        // JavaScript to toggle the visibility of the "Number of Participants" field
+        function toggleParticipants() {
+            var participationType = document.getElementById("participation_type").value;
+            var participantsField = document.getElementById("participants_field");
+
+            if (participationType === "Organized") {
+                participantsField.style.display = "block";
+                document.getElementById("num_participants").required = true; // Make it required
+            } else {
+                participantsField.style.display = "none";
+                document.getElementById("num_participants").required = false; // Remove required if hidden
+            }
+        }
+    </script>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                
+<script>
+    flatpickr("#filterInput2", {
+                    dateFormat: "d-m-Y", 
+                    allowInput: true,   
+                  });
+                 
+            
+                  flatpickr("#filterInput2", {
+                    dateFormat: "d-m-Y", 
+                    allowInput: true,   
+                  });
+
+</script>
+
+<script>
+    document.getElementById("filterInput2").addEventListener("input", function() {
+  // Alert to check if event listener works
+  alert("Input triggered");
+
+  // Get the search query (user input date) in DD-MM-YYYY format
+  
+  
+});
+</script>
+<body>
+    <header>
+        <h1>Rajalakshmi Engineering College</h1>
+        <h2>Faculty Event Form</h2>
+    </header>
+
+    <main>
+        <form action="{{ url_for('submit') }}" method="POST">
+
+            <label for="faculty_id">Faculty ID:</label><br>
+            <input type="text" id="faculty_id" name="faculty_id" placeholder="Enter Faculty ID" pattern="[A-Z0-9]+" title="Faculty ID" required><br>
+
+            <label for="name">Name of the Faculty:</label><br>
+            <input type="text" id="name" name="name" placeholder="Enter Faculty Name" required><br>
+
+            <label for="designation">Designation:</label><br>
+            <input type="text" id="designation" name="designation" placeholder="Enter Faculty Designation" required><br>
+
+            <label for="department">Department:</label><br>
+            <select id="department" name="department" required>
+                <option value="">Select Department</option>
+                <option value="MCT">MCT</option>
+                <option value="AIDS">AIDS</option>
+                <option value="AIML">AIML</option>
+                <option value="AERO">AERO</option>
+                <option value="BIOTECH">BIOTECH</option>
+                <option value="AUTO">AUTO</option>
+                <option value="BME">BME</option>
+                <option value="CHEMICAL">CHEMICAL</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="CSE">CSE</option>
+                <option value="CSBS">CSBS</option>
+                <option value="CSD">CSD</option>
+                <option value="CYBER SECURITY">CYBER SECURITY</option>
+                <option value="ECE">ECE</option>
+                <option value="EEE">EEE</option>
+                <option value="FT">FT</option>
+                <option value="CHEMISTRY">CHEMISTRY</option>
+                <option value="ENGLISH">ENGLISH</option>
+                <option value="MATHEMATICS">MATHEMATICS</option>
+                <option value="PHYSICS">PHYSICS</option>
+                <option value="IT">IT</option>
+                <option value="MANAGEMENT">MANAGEMENT</option>
+                <option value="MECH">MECH</option>
+                <option value="R&A">R&A</option>
+            </select><br>
+
+            <label for="event_type">Type of Event:</label><br>
+            <select id="event_type" name="event_type" required>
+                <option value="">Select Event Type</option>
+                <option value="FDP">FDP</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+                <option value="Course">Course</option>
+            </select><br>
+
+            <label for="participation_type">Participation Type:</label><br>
+            <select id="participation_type" name="participation_type" onchange="toggleParticipants()" required>
+                <option value="">Select Participation Type</option>
+                <option value="Attended">Attended</option>
+                <option value="Organized">Organized</option>
+            </select><br>
+
+            <label for="event_title">Title of the Event:</label><br>
+            <input type="text" id="event_title" name="event_title" placeholder="Enter Event Title" required><br>
+
+            <label for="month_year" >Month & Year:</label><br>
+            <input type="month" id="monthYearPicker" name="monthYearPicker" value="yyyy-mm"><br>
+
+            <label for="event_dates_from">Event Dates (From):</label><br>
+            <input type="date" id="event_dates_from" name="event_dates_from" required><br>
+
+            <label for="event_dates_to">Event Dates (To):</label><br>
+            <input type="date" id="event_dates_to" name="event_dates_to" required><br>
+
+            <label for="mode">Mode (Online/Offline):</label><br>
+            <select id="mode" name="mode" required>
+                <option value="">Select Mode</option>
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+            </select><br>
+
+            <!-- Participants Field, initially hidden -->
+            <div id="participants_field" style="display: none;">
+                <label for="num_participants">Number of Participants:</label><br>
+                <input type="number" id="num_participants" name="num_participants" min="1" placeholder="Enter number"><br>
+            </div>
+
+            <label for="organization">Organization Name:</label><br>
+            <input type="text" id="organization" name="organization" placeholder="Enter Organization Name" required><br>
+
+            <label for="sponsoring_agency">Sponsoring Agency:</label><br>
+            <input type="text" id="sponsoring_agency" name="sponsoring_agency" placeholder="Enter Sponsoring Agency" required><br>
+
+            <label for="certificate_upload">Certificate Upload (Yes/No):</label><br>
+            <select id="certificate_upload" name="certificate_upload" required>
+                <option value="">Select Yes/No</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+            </select><br>
+
+            <label for="Report_on_Learning_Outcomes_Upload">Report on Learning Outcomes Upload (Yes/No):</label><br>
+            <select id="Report_on_Learning_Outcomes_Upload" name="Report_on_Learning_Outcomes_Upload" required>
+                <option value="" selected disabled>Select Yes/No</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+            </select><br>
+
+            <label for="proceedings_upload">Proceedings/Study Materials Upload (Yes/No):</label><br>
+            <select id="proceedings_upload" name="proceedings_upload" required>
+                <option value="">Select Yes/No</option>
+                <option value="YES">YES</option>
+                <option value="NO">NO</option>
+            </select><br>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if request.args.get('message') %}
+            <p class="success-message">{{ request.args.get('message') }}</p>
+        {% endif %}
+    </main>
+
+</body>
+
+</html>
